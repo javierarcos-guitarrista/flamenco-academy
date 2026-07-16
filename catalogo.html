@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia de Flamenco Javier Arcos — Catálogo</title>
+    <!-- Google Fonts: Cormorant Garamond (Serif) & Montserrat (Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Load parsed inventory from Prices CSV -->
+    <script src="inventory.js"></script>
+    
+    <style>
+        :root {
+            --bg-clay: #F9F6F0;
+            --bg-clay-dark: #F4EFE6;
+            --terra-cotta: #D36B40;
+            --pastel-orange: #F4A261;
+            --charcoal: #1A1A1A;
+            --charcoal-light: #2A2A2A;
+            --white: #FFFFFF;
+            --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-clay);
+            color: var(--charcoal);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        .nav-bar {
+            max-width: 1200px;
+            margin: 0 auto 3rem auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid rgba(211, 107, 64, 0.15);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--charcoal-light);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            position: relative;
+            padding: 0.25rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--terra-cotta);
+        }
+
+        .nav-links a.active {
+            color: var(--terra-cotta);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--terra-cotta);
+            border-radius: 2px;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 3rem auto;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--charcoal-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- STYLISH FILTER CONTROLS --- */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .filter-bar {
+            background-color: var(--bg-clay-dark);
+            padding: 0.4rem;
+            border-radius: 100px;
+            display: flex;
+            gap: 0.25rem;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+            border: 1px solid rgba(211, 107, 64, 0.1);
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            outline: none;
+            padding: 0.8rem 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--charcoal-light);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .filter-btn:hover {
+            color: var(--terra-cotta);
+        }
+
+        .filter-btn.active {
+            background-color: var(--terra-cotta);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(213, 107, 64, 0.2);
+        }
+
+        /* --- SCROLLABLE CARD TRACK --- */
+        .library-wrapper {
+            max-width: 1240px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Horizontal Scroll on Mobile, Beautiful Grid on Desktop */
+        .library-track {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 1rem 0.5rem 2.5rem 0.5rem;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--terra-cotta) var(--bg-clay-dark);
+        }
+
+        .library-track::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .library-track::-webkit-scrollbar-track {
+            background: var(--bg-clay-dark);
+            border-radius: 10px;
+        }
+
+        .library-track::-webkit-scrollbar-thumb {
+            background-color: var(--terra-cotta);
+            border-radius: 10px;
+        }
+
+        /* --- THE CARD --- */
+        .course-card {
+            flex: 0 0 320px;
+            background-color: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(26, 26, 26, 0.04);
+            border: 1px solid rgba(26, 26, 26, 0.03);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(213, 107, 64, 0.1);
+            border-color: rgba(213, 107, 64, 0.15);
+        }
+
+        /* Unique artistic gradient covers for a warm, premium feel */
+        .card-cover {
+            height: 180px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .cover-payo {
+            background: linear-gradient(135deg, #E29578 0%, #D36B40 100%);
+        }
+        .cover-fenomeno {
+            background: linear-gradient(135deg, #D36B40 0%, #8E3A18 100%);
+        }
+        .cover-maestro {
+            background: linear-gradient(135deg, #4A1D0D 0%, #1A1A1A 100%);
+        }
+
+        .badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            padding: 0.4rem 0.9rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--bg-clay-dark);
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+
+        .price-tag {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--terra-cotta);
+        }
+
+        .view-btn {
+            background-color: var(--bg-clay-dark);
+            color: var(--charcoal);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: var(--transition-smooth);
+        }
+
+        .course-card:hover .view-btn {
+            background-color: var(--terra-cotta);
+            color: var(--white);
+        }
+
+        /* --- APP STORE POPUP MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 26, 26, 0.4);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background-color: var(--white);
+            width: 100%;
+            max-width: 600px;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            position: relative;
+            transform: scale(0.9) translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(26, 26, 26, 0.8);
+            border: none;
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: var(--transition-smooth);
+        }
+
+        .modal-close:hover {
+            background-color: var(--terra-cotta);
+            transform: rotate(90deg);
+        }
+
+        .modal-hero {
+            height: 220px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+        }
+
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-level {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--terra-cotta);
+            margin-bottom: 1rem;
+        }
+
+        .modal-desc {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--charcoal-light);
+            margin-bottom: 2rem;
+        }
+
+        /* --- SYLLABUS / CURRICULUM SECTION --- */
+        .modal-curriculum {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            border-top: 1px solid var(--bg-clay-dark);
+            padding-top: 1.5rem;
+        }
+
+        .curriculum-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        .curriculum-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .curriculum-item {
+            background-color: var(--bg-clay);
+            padding: 0.9rem 1.2rem;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(211, 107, 64, 0.05);
+            transition: var(--transition-smooth);
+        }
+
+        .curriculum-item:hover {
+            border-color: rgba(211, 107, 64, 0.2);
+            background-color: var(--bg-clay-dark);
+        }
+
+        .curriculum-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .curriculum-play-icon {
+            color: var(--terra-cotta);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .curriculum-lesson-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--charcoal-light);
+        }
+
+        .curriculum-duration {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #777;
+            background-color: rgba(0,0,0,0.04);
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+        }
+
+        /* --- THE SMART BUNDLE UPSELL BANNER --- */
+        .upsell-banner {
+            background-color: var(--bg-clay-dark);
+            border: 1px dashed var(--terra-cotta);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: none; /* Controlled via JS */
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .upsell-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--terra-cotta);
+        }
+
+        .upsell-text {
+            font-size: 0.85rem;
+            color: var(--charcoal-light);
+            font-weight: 400;
+        }
+
+        .upsell-btn {
+            background-color: var(--terra-cotta);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .upsell-btn:hover {
+            background-color: var(--charcoal);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--bg-clay-dark);
+            padding-top: 1.5rem;
+            gap: 1.5rem;
+        }
+
+        .modal-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .modal-action-btns {
+            display: flex;
+            gap: 0.75rem;
+            flex-grow: 1;
+            justify-content: flex-end;
+        }
+
+        .checkout-btn {
+            background-color: var(--charcoal);
+            color: var(--white);
+            border: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-align: center;
+            flex-grow: 1;
+            max-width: 200px;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--terra-cotta);
+            box-shadow: 0 4px 15px rgba(213, 107, 64, 0.3);
+        }
+
+        .checkout-btn.secondary {
+            background-color: var(--bg-clay-dark);
+            color: var(--charcoal);
+            border: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .checkout-btn.secondary:hover {
+            background-color: var(--charcoal);
+            color: var(--white);
+            border-color: var(--charcoal);
+            box-shadow: 0 4px 15px rgba(26, 26, 26, 0.1);
+        }
+
+        /* Desktop Grid Transformation */
+        @media (min-width: 900px) {
+            .library-track {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                overflow-x: visible;
+                padding-bottom: 0;
+            }
+            .course-card {
+                flex: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-logo">Javier Arcos</a>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html" class="active">Catálogo</a>
+            <a href="contacto.html">Contacto</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Academia de Flamenco Javier Arcos</h1>
+        <p>Un plan de estudios digital riguroso a nivel de conservatorio, diseñado para llevarte de guitarrista principiante a un verdadero músico flamenco.</p>
+    </header>
+
+    <!-- STYLISH LEVEL TABS -->
+    <div class="filter-container">
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterLevel('all')">Todos los Niveles</button>
+            <button class="filter-btn" onclick="filterLevel('payo')">Payo (Principiante)</button>
+            <button class="filter-btn" onclick="filterLevel('fenomeno')">Fenómeno (Intermedio)</button>
+            <button class="filter-btn" onclick="filterLevel('maestro')">Maestro (Avanzado)</button>
+        </div>
+    </div>
+
+    <!-- LIBRARY WORKSPACE -->
+    <div class="library-wrapper">
+        <div class="library-track" id="library-track">
+            <!-- Dynamic courses loaded via script -->
+        </div>
+    </div>
+
+    <!-- APP STORE POPUP MODAL -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-card" id="modal-card">
+            <button class="modal-close" onclick="closeModalForce()">&times;</button>
+            <div class="modal-hero" id="modal-hero">
+                <!-- Color-assigned cover gradient -->
+            </div>
+            <div class="modal-body">
+                <span class="modal-level" id="modal-level-badge">Nivel</span>
+                <h2 class="modal-title" id="modal-title">Título del Curso</h2>
+                <p class="modal-desc" id="modal-desc">Descripción detallada del curso aquí.</p>
+
+                <!-- Curriculum (5 lessons) Section -->
+                <div class="modal-curriculum">
+                    <h3 class="curriculum-title">Clases Incluidas (5 Lecciones en Video)</h3>
+                    <div class="curriculum-list" id="curriculum-list">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Dynamic Upsell Banner (shows only if item is individual) -->
+                <div class="upsell-banner" id="upsell-banner">
+                    <div class="upsell-header">
+                        <span>💡</span> OFERTA ELECCIÓN INTELIGENTE
+                    </div>
+                    <div class="upsell-text" id="upsell-text">
+                        Este módulo está incluido en el pack completo. ¡Ahorra más del 30% al adquirir el paquete completo!
+                    </div>
+                    <button class="upsell-btn" id="upsell-btn" onclick="openBundleFromUpsell()">Ver Pack Completo en su Lugar</button>
+                </div>
+
+                <div class="modal-actions">
+                    <span class="modal-price" id="modal-price">0,00 €</span>
+                    <div class="modal-action-btns">
+                        <button class="checkout-btn secondary" id="quick-unlock-btn">Pago Rápido</button>
+                        <button class="checkout-btn" id="cart-checkout-btn">Ir a la Caja</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- LESSON CURRICULUM GENERATOR ---
+        function generateClassOverview(course) {
+            const lessons = [];
+            const title = course.title;
+            
+            if (title.includes("Tangos")) {
+                lessons.push(
+                    { title: "Estructura rítmica y compás base por Tangos", duration: "10:45" },
+                    { title: "El marcaje tradicional y postura de la mano", duration: "12:15" },
+                    { title: "Técnica de pulgar y arrastres fundamentales", duration: "09:30" },
+                    { title: "Estudio detallado de la primera falseta clásica", duration: "15:20" },
+                    { title: "Remates y cierres para acompañar", duration: "11:10" }
+                );
+            } else if (title.includes("Bulerías") || title.includes("Bulería")) {
+                lessons.push(
+                    { title: "El ciclo de 12 tiempos y acentuación en la Bulería", duration: "12:40" },
+                    { title: "Rasgueos esenciales (tres y cuatro dedos)", duration: "14:15" },
+                    { title: "Técnica de alzapúa y síncopas de pulgar", duration: "11:55" },
+                    { title: "Montaje paso a paso de una falseta de Jerez", duration: "18:30" },
+                    { title: "Cierres por Bulerías y cómo rematar el compás", duration: "10:20" }
+                );
+            } else if (title.includes("Alegrías") || title.includes("Alegría")) {
+                lessons.push(
+                    { title: "El compás de Cádiz y sus acentos característicos", duration: "09:50" },
+                    { title: "El silencio y la castellana: Estructura del baile", duration: "13:40" },
+                    { title: "Rasgueos y dinámicas suaves en Alegrías", duration: "11:15" },
+                    { title: "Falsetas con aire de salina y trémolo", duration: "16:25" },
+                    { title: "El final por Bulerías de Cádiz (Juguetillos)", duration: "12:05" }
+                );
+            } else if (title.includes("Soleá") || title.includes("Soleares")) {
+                lessons.push(
+                    { title: "El compás de Soleá: Tempo y solemnidad", duration: "11:30" },
+                    { title: "Toque de pulgar y ligado en Soleá", duration: "13:10" },
+                    { title: "Estructura de la Soleá de concierto", duration: "10:45" },
+                    { title: "Estudio detallado de falseta clásica", duration: "17:40" },
+                    { title: "Remate final y resolución armónica", duration: "09:55" }
+                );
+            } else if (title.includes("Fandangos") || title.includes("Fandango")) {
+                lessons.push(
+                    { title: "El compás de 3/4 y rueda armónica del Fandango", duration: "08:45" },
+                    { title: "Variaciones de pulgar y rasgueos sencillos", duration: "11:20" },
+                    { title: "Estilo y ligaditos en la melodía principal", duration: "10:35" },
+                    { title: "Desarrollo de variaciones tradicionales", duration: "14:50" },
+                    { title: "Toque libre vs Toque compasado en el cante", duration: "12:15" }
+                );
+            } else if (title.includes("Técnica")) {
+                lessons.push(
+                    { title: "Biomecánica y calentamiento de manos", duration: "07:30" },
+                    { title: "Ejercicios de independencia y fuerza de dedos", duration: "12:45" },
+                    { title: "Estudio de velocidad progresiva y metrónomo", duration: "14:10" },
+                    { title: "Control de tensión y ergonomía al tocar", duration: "10:15" },
+                    { title: "Rutina diaria de práctica recomendada", duration: "15:00" }
+                );
+            } else if (title.includes("Cante") || title.includes("Acompaña")) {
+                lessons.push(
+                    { title: "Introducción al cante: Escuchar al cantaor", duration: "11:20" },
+                    { title: "Afinación y transposición de tonos", duration: "09:45" },
+                    { title: "El marcaje y las respuestas al cante", duration: "14:30" },
+                    { title: "Estructura de la letra y tercios", duration: "13:15" },
+                    { title: "Llamadas, falsetas cortas y cierres interactivos", duration: "16:10" }
+                );
+            } else if (title.includes("Maestros") || title.includes("Maestro")) {
+                lessons.push(
+                    { title: "Contexto histórico y estilo del maestro", duration: "10:15" },
+                    { title: "Deconstrucción técnica de su recurso estrella", duration: "15:40" },
+                    { title: "Análisis de su falseta más icónica", duration: "22:10" },
+                    { title: "Conceptos armónicos y escalas predilectas", duration: "16:30" },
+                    { title: "Cómo adaptar sus ideas a tu propia guitarra", duration: "14:05" }
+                );
+            } else {
+                lessons.push(
+                    { title: `Introducción general y objetivos del curso`, duration: "08:15" },
+                    { title: `Técnicas fundamentales aplicadas a ${title}`, duration: "12:30" },
+                    { title: `Estudio práctico y desglose de falsetas`, duration: "15:45" },
+                    { title: `Dinámica de acompañamiento y ritmo avanzado`, duration: "13:20" },
+                    { title: `Conclusión, consejos finales y rutina de estudio`, duration: "09:50" }
+                );
+            }
+            return lessons;
+        }
+
+        // --- LIVE FILTERING ---
+        function filterLevel(level) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (typeof event !== 'undefined' && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            } else if (typeof event !== 'undefined' && event.target) {
+                event.target.classList.add('active');
+            }
+
+            const cards = document.querySelectorAll('.course-card');
+            cards.forEach(card => {
+                const cardLevel = card.getAttribute('data-level');
+                if (level === 'all' || cardLevel === level) {
+                    card.style.display = 'flex';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // --- APP STORE MODAL CONTROLLERS ---
+        const overlay = document.getElementById('modal-overlay');
+        let activeBundleId = null;
+
+        function openModal(course) {
+            const mHero = document.getElementById('modal-hero');
+            const mLevel = document.getElementById('modal-level-badge');
+            const mTitle = document.getElementById('modal-title');
+            const mDesc = document.getElementById('modal-desc');
+            const mPrice = document.getElementById('modal-price');
+            const upsell = document.getElementById('upsell-banner');
+            const quickUnlockBtn = document.getElementById('quick-unlock-btn');
+            const cartCheckoutBtn = document.getElementById('cart-checkout-btn');
+            const currList = document.getElementById('curriculum-list');
+
+            // Set content
+            mLevel.innerText = course.level.toUpperCase();
+            mTitle.innerText = course.title;
+            mDesc.innerText = course.desc;
+            mPrice.innerText = course.price;
+            
+            // Build Lesson Syllabus
+            currList.innerHTML = '';
+            const lessons = generateClassOverview(course);
+            lessons.forEach((les, idx) => {
+                const item = document.createElement('div');
+                item.className = 'curriculum-item';
+                item.innerHTML = `
+                    <div class="curriculum-left">
+                        <span class="curriculum-play-icon">▶</span>
+                        <span class="curriculum-lesson-title">${idx + 1}. ${les.title}</span>
+                    </div>
+                    <span class="curriculum-duration">${les.duration}</span>
+                `;
+                currList.appendChild(item);
+            });
+
+            // Action CTAs
+            quickUnlockBtn.onclick = () => alert(`¡Pago rápido iniciado para: ${course.title}!`);
+            cartCheckoutBtn.onclick = () => {
+                window.location.href = `checkout.html?id=${course.id}`;
+            };
+
+            // Assign matching cover styling to the modal
+            mHero.className = "modal-hero";
+            if (course.levelSlug === 'payo') {
+                mHero.classList.add('cover-payo');
+            } else if (course.levelSlug === 'fenomeno') {
+                mHero.classList.add('cover-fenomeno');
+            } else {
+                mHero.classList.add('cover-maestro');
+            }
+
+            // Dynamic Bundle Logic
+            if (course.type === 'individual') {
+                activeBundleId = course.bundleId;
+                document.getElementById('upsell-text').innerHTML = `Este curso está incluido en <strong>${course.bundleName}</strong> por solo <strong>${course.bundlePrice}</strong>. ¡Consigue acceso de por vida a todos los módulos de este nivel y ahorra!`;
+                upsell.style.display = 'flex';
+            } else {
+                upsell.style.display = 'none';
+                activeBundleId = null;
+            }
+
+            // Open overlay
+            overlay.classList.add('active');
+        }
+
+        // Close modal when clicking dark overlay
+        function closeModal(event) {
+            if (event.target === overlay) {
+                overlay.classList.remove('active');
+            }
+        }
+
+        // Close modal using close button
+        function closeModalForce() {
+            overlay.classList.remove('active');
+        }
+
+        // Auto-redirect user inside popup directly to the upsell bundle
+        function openBundleFromUpsell() {
+            if (activeBundleId) {
+                overlay.classList.remove('active');
+                setTimeout(() => {
+                    const targetCard = document.querySelector(`[data-id="${activeBundleId}"]`);
+                    if (targetCard) {
+                        targetCard.click();
+                    }
+                }, 300);
+            }
+        }
+
+        // --- DYNAMIC CARD GENERATION ---
+        function renderLibrary() {
+            const track = document.getElementById('library-track');
+            track.innerHTML = '';
+
+            inventory.forEach(course => {
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.setAttribute('data-level', course.levelSlug);
+                card.setAttribute('data-id', course.id);
+                card.setAttribute('data-type', course.type);
+
+                let coverClass = 'cover-payo';
+                if (course.levelSlug === 'fenomeno') coverClass = 'cover-fenomeno';
+                if (course.levelSlug === 'maestro') coverClass = 'cover-maestro';
+
+                let coverStyle = '';
+                let badgeText = course.level;
+                if (course.type === 'bundle') {
+                    badgeText = `${course.level} Pack`;
+                    if (course.levelSlug === 'payo') coverStyle = 'background: linear-gradient(135deg, #1A1A1A 0%, #D36B40 100%);';
+                    else if (course.levelSlug === 'fenomeno') coverStyle = 'background: linear-gradient(135deg, #1A1A1A 0%, #8E3A18 100%);';
+                    else if (course.levelSlug === 'maestro') coverStyle = 'background: linear-gradient(135deg, #1A1A1A 0%, #4A1D0D 100%);';
+                }
+
+                card.innerHTML = `
+                    <div class="card-cover ${coverClass}" style="${coverStyle}">
+                        <span class="badge" ${course.type === 'bundle' ? 'style="background-color: var(--terra-cotta);"' : ''}>${badgeText}</span>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <h2 class="card-title">${course.title}</h2>
+                            <p class="card-meta">${course.category}</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="price-tag">${course.price}</span>
+                            <button class="view-btn">${course.type === 'bundle' ? 'Ver Pack' : 'Ver Curso'}</button>
+                        </div>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => {
+                    openModal(course);
+                });
+
+                track.appendChild(card);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderLibrary();
+        });
+    </script>
+</body>
+</html>
