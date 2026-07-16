@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academia de Flamenco Javier Arcos — Catálogo</title>
+    <title>Academia de Flamenco Javier Arcos — Plan de Estudios</title>
     <!-- Google Fonts: Cormorant Garamond (Serif) & Montserrat (Sans-Serif) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,61 +37,6 @@
             line-height: 1.6;
             padding: 2rem 1rem;
             -webkit-font-smoothing: antialiased;
-        }
-
-        /* --- NAVIGATION BAR --- */
-        .nav-bar {
-            max-width: 1200px;
-            margin: 0 auto 3rem auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 1rem;
-            border-bottom: 1px solid rgba(211, 107, 64, 0.15);
-        }
-
-        .nav-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--charcoal);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--charcoal-light);
-            text-decoration: none;
-            transition: var(--transition-smooth);
-            position: relative;
-            padding: 0.25rem 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--terra-cotta);
-        }
-
-        .nav-links a.active {
-            color: var(--terra-cotta);
-        }
-
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--terra-cotta);
-            border-radius: 2px;
         }
 
         header {
@@ -404,72 +349,6 @@
             margin-bottom: 2rem;
         }
 
-        /* --- SYLLABUS / CURRICULUM SECTION --- */
-        .modal-curriculum {
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            border-top: 1px solid var(--bg-clay-dark);
-            padding-top: 1.5rem;
-        }
-
-        .curriculum-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--charcoal);
-        }
-
-        .curriculum-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .curriculum-item {
-            background-color: var(--bg-clay);
-            padding: 0.9rem 1.2rem;
-            border-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid rgba(211, 107, 64, 0.05);
-            transition: var(--transition-smooth);
-        }
-
-        .curriculum-item:hover {
-            border-color: rgba(211, 107, 64, 0.2);
-            background-color: var(--bg-clay-dark);
-        }
-
-        .curriculum-left {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .curriculum-play-icon {
-            color: var(--terra-cotta);
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .curriculum-lesson-title {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--charcoal-light);
-        }
-
-        .curriculum-duration {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #777;
-            background-color: rgba(0,0,0,0.04);
-            padding: 0.2rem 0.5rem;
-            border-radius: 6px;
-        }
-
         /* --- THE SMART BUNDLE UPSELL BANNER --- */
         .upsell-banner {
             background-color: var(--bg-clay-dark);
@@ -521,7 +400,6 @@
             align-items: center;
             border-top: 1px solid var(--bg-clay-dark);
             padding-top: 1.5rem;
-            gap: 1.5rem;
         }
 
         .modal-price {
@@ -534,13 +412,12 @@
             background-color: var(--charcoal);
             color: var(--white);
             border: none;
-            padding: 0.9rem 2rem;
+            padding: 0.9rem 2.5rem;
             border-radius: 100px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: var(--transition-smooth);
-            text-align: center;
         }
 
         .checkout-btn:hover {
@@ -563,15 +440,6 @@
     </style>
 </head>
 <body>
-
-    <nav class="nav-bar">
-        <a href="index.html" class="nav-logo">Javier Arcos</a>
-        <div class="nav-links">
-            <a href="index.html">Inicio</a>
-            <a href="catalogo.html" class="active">Catálogo</a>
-            <a href="contacto.html">Contacto</a>
-        </div>
-    </nav>
 
     <header>
         <h1>Academia de Flamenco Javier Arcos</h1>
@@ -607,14 +475,6 @@
                 <h2 class="modal-title" id="modal-title">Título del Curso</h2>
                 <p class="modal-desc" id="modal-desc">Descripción detallada del curso aquí.</p>
 
-                <!-- Curriculum (5 lessons) Section -->
-                <div class="modal-curriculum">
-                    <h3 class="curriculum-title">Clases Incluidas (5 Lecciones en Video)</h3>
-                    <div class="curriculum-list" id="curriculum-list">
-                        <!-- Loaded dynamically -->
-                    </div>
-                </div>
-
                 <!-- Dynamic Upsell Banner (shows only if item is individual) -->
                 <div class="upsell-banner" id="upsell-banner">
                     <div class="upsell-header">
@@ -628,16 +488,16 @@
 
                 <div class="modal-actions">
                     <span class="modal-price" id="modal-price">0,00 €</span>
-                    <button class="checkout-btn" id="cart-checkout-btn">Ir a la Caja</button>
+                    <button class="checkout-btn" id="checkout-btn">Desbloquear Curso</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-
         // --- LIVE FILTERING ---
         function filterLevel(level) {
+            // Update filter buttons active states
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             
@@ -647,6 +507,7 @@
                 event.target.classList.add('active');
             }
 
+            // Hide / Show cards with smooth animations
             const cards = document.querySelectorAll('.course-card');
             cards.forEach(card => {
                 const cardLevel = card.getAttribute('data-level');
@@ -668,7 +529,7 @@
 
         // --- APP STORE MODAL CONTROLLERS ---
         const overlay = document.getElementById('modal-overlay');
-        let activeBundleId = null;
+        let activeBundleId = null; // Track bundle ID for the upsell dynamic link
 
         function openModal(course) {
             const mHero = document.getElementById('modal-hero');
@@ -677,34 +538,15 @@
             const mDesc = document.getElementById('modal-desc');
             const mPrice = document.getElementById('modal-price');
             const upsell = document.getElementById('upsell-banner');
-            const cartCheckoutBtn = document.getElementById('cart-checkout-btn');
-            const currList = document.getElementById('curriculum-list');
+            const checkoutBtn = document.getElementById('checkout-btn');
 
             // Set content
             mLevel.innerText = course.level.toUpperCase();
             mTitle.innerText = course.title;
             mDesc.innerText = course.desc;
             mPrice.innerText = course.price;
-
-            // Build Lesson Syllabus from inventory data
-            currList.innerHTML = '';
-            (course.curriculum || []).forEach((les, idx) => {
-                const item = document.createElement('div');
-                item.className = 'curriculum-item';
-                item.innerHTML = `
-                    <div class="curriculum-left">
-                        <span class="curriculum-play-icon">▶</span>
-                        <span class="curriculum-lesson-title">${idx + 1}. ${les.title}</span>
-                    </div>
-                    <span class="curriculum-duration">${les.duration}</span>
-                `;
-                currList.appendChild(item);
-            });
-
-            // Single CTA — go to checkout
-            cartCheckoutBtn.onclick = () => {
-                window.location.href = `checkout.html?id=${course.id}`;
-            };
+            checkoutBtn.innerText = course.type === 'bundle' ? 'Adquirir Pack' : 'Desbloquear Curso';
+            checkoutBtn.onclick = () => alert(`¡Pasarela de pago iniciada para: ${course.title}!`);
 
             // Assign matching cover styling to the modal
             mHero.className = "modal-hero";
@@ -716,13 +558,10 @@
                 mHero.classList.add('cover-maestro');
             }
 
-            // Dynamic Bundle Upsell Logic — driven by bundledIn property in inventory
-            if (course.bundledIn) {
-                activeBundleId = course.bundledIn;
-                const bundleCourse = inventory.find(c => c.id === course.bundledIn);
-                const bundleName = bundleCourse ? bundleCourse.title : 'el pack completo';
-                const bundlePrice = bundleCourse ? bundleCourse.price : '';
-                document.getElementById('upsell-text').innerHTML = `Este curso está incluido en <strong>${bundleName}</strong> por solo <strong>${bundlePrice}</strong>. ¡Consigue acceso de por vida a todos los módulos de este nivel y ahorra!`;
+            // Dynamic Bundle Logic
+            if (course.type === 'individual') {
+                activeBundleId = course.bundleId;
+                document.getElementById('upsell-text').innerHTML = `Este curso está incluido en <strong>${course.bundleName}</strong> por solo <strong>${course.bundlePrice}</strong>. ¡Consigue acceso de por vida a todos los módulos de este nivel y ahorra!`;
                 upsell.style.display = 'flex';
             } else {
                 upsell.style.display = 'none';
@@ -759,18 +598,18 @@
         }
 
         // --- DYNAMIC CARD GENERATION ---
-        // Only renders courses where available === true
         function renderLibrary() {
             const track = document.getElementById('library-track');
-            track.innerHTML = '';
+            track.innerHTML = ''; // Clear hardcoded markup
 
-            inventory.filter(course => course.available === true).forEach(course => {
+            inventory.forEach(course => {
                 const card = document.createElement('div');
                 card.className = 'course-card';
                 card.setAttribute('data-level', course.levelSlug);
                 card.setAttribute('data-id', course.id);
                 card.setAttribute('data-type', course.type);
 
+                // Determine cover styles and class
                 let coverClass = 'cover-payo';
                 if (course.levelSlug === 'fenomeno') coverClass = 'cover-fenomeno';
                 if (course.levelSlug === 'maestro') coverClass = 'cover-maestro';
@@ -800,6 +639,7 @@
                     </div>
                 `;
 
+                // Modal opening on click
                 card.addEventListener('click', () => {
                     openModal(course);
                 });
@@ -808,6 +648,7 @@
             });
         }
 
+        // Initialize library on load
         window.addEventListener('DOMContentLoaded', () => {
             renderLibrary();
         });
