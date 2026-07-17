@@ -675,8 +675,10 @@
         function renderLibrary() {
             const track = document.getElementById('library-track');
             track.innerHTML = ''; // Clear hardcoded markup
-
-            inventory.forEach(course => {
+ 
+            const visibleInventory = inventory.filter(course => course.available !== false);
+ 
+            visibleInventory.forEach(course => {
                 const card = document.createElement('div');
                 card.className = 'course-card';
                 card.setAttribute('data-level', course.levelSlug);
@@ -726,10 +728,10 @@
         window.addEventListener('DOMContentLoaded', () => {
             renderLibrary();
         });
+    </script>
+
     <footer>
         <p>&copy; 2026 Academia de Flamenco Javier Arcos. Todos los derechos reservados.</p>
     </footer>
-
-    </script>
 </body>
 </html>
