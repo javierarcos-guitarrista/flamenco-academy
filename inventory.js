@@ -23,7 +23,7 @@ const inventory = [
       { title: "Acompañamiento básico y transiciones entre acordes", duration: "11:05" },
       { title: "Cierres y remates por Tangos con metrónomo", duration: "13:30" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -43,7 +43,7 @@ const inventory = [
       { title: "Falseta introductoria con aire de salina", duration: "16:25" },
       { title: "Final por Bulerías de Cádiz (Juguetillos)", duration: "12:05" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -63,7 +63,7 @@ const inventory = [
       { title: "Estudio detallado de falseta introductoria", duration: "17:40" },
       { title: "Remate final y resolución al tono", duration: "09:55" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -83,7 +83,7 @@ const inventory = [
       { title: "Desarrollo de variaciones del patrón base", duration: "14:50" },
       { title: "Toque libre vs compasado al servicio del cante", duration: "12:15" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -103,7 +103,7 @@ const inventory = [
       { title: "Montaje paso a paso de tu primera falseta por Bulería", duration: "18:30" },
       { title: "Cierres por Bulerías y cómo rematar con el cantaor", duration: "10:20" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -123,7 +123,7 @@ const inventory = [
       { title: "Introducción a los Fandangos: Rueda de acordes 3/4", duration: "08:45" },
       { title: "Introducción a las Bulerías: El ciclo de Jerez", duration: "12:40" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -143,7 +143,7 @@ const inventory = [
       { title: "Técnica de rasgueo limpio: Tres y cuatro dedos", duration: "12:10" },
       { title: "Picado básico: Velocidad progresiva con metrónomo", duration: "13:50" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -163,7 +163,7 @@ const inventory = [
       { title: "Transiciones entre acordes sin pausa: Entrenamiento", duration: "14:05" },
       { title: "Cejillas completas: Técnica y construcción gradual", duration: "15:10" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -183,7 +183,7 @@ const inventory = [
       { title: "Estudio combinado: Picado + cambios de posición", duration: "14:30" },
       { title: "Rutina diaria de 20 minutos para consolidar técnica", duration: "11:45" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -203,7 +203,7 @@ const inventory = [
       { title: "La cadencia como motor de la tensión dramática", duration: "14:35" },
       { title: "Aplicación práctica sobre Soleá, Seguiriya y Bulerías", duration: "16:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -223,7 +223,7 @@ const inventory = [
       { title: "Compás de Soleá, Bulería y Tangos con metrónomo", duration: "15:20" },
       { title: "Ejercicio de escucha activa y respuesta al cantaor", duration: "12:40" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -243,7 +243,7 @@ const inventory = [
       { title: "Compás y Palmas: Construye tu reloj interno", duration: "11:15" },
       { title: "Sesión práctica integrada: Juntando todos los elementos", duration: "20:00" }
     ],
-    available: false
+    available: true
   },
 
 
@@ -266,7 +266,7 @@ const inventory = [
       { title: "Montaje completo de la falseta a velocidad real", duration: "18:00" },
       { title: "Variaciones y personalización del material aprendido", duration: "12:20" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -286,7 +286,7 @@ const inventory = [
       { title: "Falseta clásica de Malagueña con trémolo integrado", duration: "19:40" },
       { title: "El cierre dramático y la cadencia final de la Malagueña", duration: "10:30" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -306,7 +306,7 @@ const inventory = [
       { title: "Falseta oscura de Seguiriya: Montaje progresivo", duration: "20:10" },
       { title: "Cierre y remate: La resolución del dolor flamenco", duration: "09:45" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -326,7 +326,7 @@ const inventory = [
       { title: "Falseta de Tangos rápida sobre la base aprendida", duration: "16:45" },
       { title: "Montaje completo: Tientos y Tangos como suite", duration: "18:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -346,7 +346,7 @@ const inventory = [
       { title: "Técnica de bordón y respuesta melodía-bajo", duration: "14:20" },
       { title: "Montaje completo a velocidad de concierto", duration: "19:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -366,7 +366,7 @@ const inventory = [
       { title: "Falsetas por Tientos-Tangos: Transición y suite", duration: "13:10" },
       { title: "Falsetas por Soleá: Clásico y contemporáneo", duration: "16:30" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -386,7 +386,7 @@ const inventory = [
       { title: "Rasgueo abierto-cerrado de cuatro dedos a tempo", duration: "14:10" },
       { title: "Rutina de velocidad: Método progresivo de 4 semanas", duration: "11:30" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -406,7 +406,7 @@ const inventory = [
       { title: "Estiramientos avanzados: Preparación biomecánica", duration: "13:20" },
       { title: "Ejercicio integrado: Velocidad + Claridad + Mano relajada", duration: "15:10" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -426,7 +426,7 @@ const inventory = [
       { title: "Estudio de fragmentos difíciles frame a frame", duration: "17:30" },
       { title: "Sesión de consolidación: Ambas manos a 130+ BPM", duration: "14:45" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -446,7 +446,7 @@ const inventory = [
       { title: "Afinación y transposición: Cambio de tono en vivo", duration: "12:40" },
       { title: "Práctica con cante grabado: Análisis y reacción", duration: "15:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -466,7 +466,7 @@ const inventory = [
       { title: "Cierres y remates en diferentes momentos del cante", duration: "13:30" },
       { title: "Sesión completa de acompañamiento con cante real", duration: "18:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -486,7 +486,7 @@ const inventory = [
       { title: "Falsetas entre los tercios del cante de Alegrías", duration: "15:40" },
       { title: "El final: Transición a Bulerías de Cádiz con el cantaor", duration: "14:10" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -506,7 +506,7 @@ const inventory = [
       { title: "Falsetas cortas de respuesta entre coplas", duration: "14:20" },
       { title: "Sesión completa de acompañamiento: Bulerías en vivo", duration: "19:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -526,7 +526,7 @@ const inventory = [
       { title: "Falsetas personales de respuesta al estilo", duration: "16:10" },
       { title: "Práctica completa con cantaor por Fandangos Personales", duration: "17:30" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -546,7 +546,7 @@ const inventory = [
       { title: "Los Alosneros: Variante y su carácter diferencial", duration: "12:40" },
       { title: "Sesión completa de acompañamiento grabado", duration: "17:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -566,7 +566,7 @@ const inventory = [
       { title: "La Rumba flamenca: Groove y percusión de cuerpo", duration: "14:50" },
       { title: "Práctica de acompañamiento con los tres cantes", duration: "16:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -586,7 +586,7 @@ const inventory = [
       { title: "Fandangos Naturales, de Huelva y Personales", duration: "14:00" },
       { title: "Cantes de Ida y Vuelta: Guajira, Colombiana y Rumba", duration: "16:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -606,7 +606,7 @@ const inventory = [
       { title: "Análisis de actuación: Afinación, matiz y presencia", duration: "13:00" },
       { title: "Sesión integradora: Concierto Fenómeno completo", duration: "25:00" }
     ],
-    available: false
+    available: true
   },
 
 
@@ -629,7 +629,7 @@ const inventory = [
       { title: "Análisis de 'Entre Dos Aguas' y 'La Barrosa'", duration: "22:15" },
       { title: "Cómo incorporar su vocabulario a tu toque propio", duration: "15:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -649,7 +649,7 @@ const inventory = [
       { title: "Fragmentos difíciles desglosados frame a frame", duration: "19:50" },
       { title: "La composición según Javier: Desde la idea al tema", duration: "14:20" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -669,7 +669,7 @@ const inventory = [
       { title: "Análisis de 'Caminando' y su estructura armónica", duration: "21:30" },
       { title: "Adaptando el lenguaje de Gerardo a tu flamenco", duration: "13:50" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -689,7 +689,7 @@ const inventory = [
       { title: "Análisis de 'Locura de Brisa y Trino'", duration: "20:00" },
       { title: "Composición pictórica: Crear imágenes con notas", duration: "14:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -709,7 +709,7 @@ const inventory = [
       { title: "Javier Arcos: Pureza académica y expresión moderna", duration: "19:00" },
       { title: "Síntesis: Construyendo tu voz con la de los maestros", duration: "16:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -729,7 +729,7 @@ const inventory = [
       { title: "Conectar secciones: El arco narrativo de una pieza", duration: "15:20" },
       { title: "Grabación y análisis de tu propia composición", duration: "18:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -749,7 +749,7 @@ const inventory = [
       { title: "Modulaciones complejas sin perder el duende", duration: "13:40" },
       { title: "Sesión de improvisación libre: Aplica todo lo aprendido", duration: "20:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -769,7 +769,7 @@ const inventory = [
       { title: "El pánico escénico: Técnicas de control y preparación", duration: "11:50" },
       { title: "Desarrollo de carrera profesional en el flamenco actual", duration: "14:30" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -789,7 +789,7 @@ const inventory = [
       { title: "El groove de Jerez: Cómo encuadrarlo en el compás", duration: "13:40" },
       { title: "Sesión de preguntas y demostración en directo", duration: "20:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -809,7 +809,7 @@ const inventory = [
       { title: "La Soleá de hoy: Pureza y lenguaje del siglo XXI", duration: "17:10" },
       { title: "Las Bulerías de Madrid: Diferencias con Jerez y Cádiz", duration: "13:50" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -829,7 +829,7 @@ const inventory = [
       { title: "Análisis de fragmento en vivo: Descomposición total", duration: "19:20" },
       { title: "El respeto al legado y la voz propia del artista", duration: "12:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -849,7 +849,7 @@ const inventory = [
       { title: "Presencia escénica y musicalidad: Lo que va más allá de las notas", duration: "12:30" },
       { title: "Demostración y análisis en directo con preguntas", duration: "19:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -869,7 +869,7 @@ const inventory = [
       { title: "Kilino Jiménez: Precisión y síncopa perfecta", duration: "19:00" },
       { title: "Javier Arcos: Carrera, estudio y actuación profesional", duration: "15:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -889,7 +889,7 @@ const inventory = [
       { title: "Simulación de actuación: Grabación de tu sesión", duration: "12:00" },
       { title: "Revisión y corrección de errores en tiempo real", duration: "14:00" }
     ],
-    available: false
+    available: true
   },
 
   {
@@ -909,7 +909,7 @@ const inventory = [
       { title: "Clases Magistrales exclusivas con 5 virtuosos en vivo", duration: "19:00" },
       { title: "Sesión Toca con los Maestros: Práctica real integrada", duration: "14:00" }
     ],
-    available: false
+    available: true
   },
 
 
@@ -932,7 +932,7 @@ const inventory = [
       { title: "Clases Magistrales: Las 5 sesiones con maestros invitados", duration: "Variado" },
       { title: "Acceso anticipado a todos los nuevos cursos del futuro", duration: "∞" }
     ],
-    available: false
+    available: true
   }
 
 ];
