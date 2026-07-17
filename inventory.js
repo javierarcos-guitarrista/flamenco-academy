@@ -23,7 +23,7 @@ const inventory = [
       { title: "Acompañamiento básico y transiciones entre acordes", duration: "11:05" },
       { title: "Cierres y remates por Tangos con metrónomo", duration: "13:30" }
     ],
-    available: true
+    available: false
   },
 
   {
@@ -43,7 +43,7 @@ const inventory = [
       { title: "Falseta introductoria con aire de salina", duration: "16:25" },
       { title: "Final por Bulerías de Cádiz (Juguetillos)", duration: "12:05" }
     ],
-    available: true
+    available: false
   },
 
   {
@@ -63,7 +63,7 @@ const inventory = [
       { title: "Estudio detallado de falseta introductoria", duration: "17:40" },
       { title: "Remate final y resolución al tono", duration: "09:55" }
     ],
-    available: true
+    available: false
   },
 
   {
@@ -83,7 +83,7 @@ const inventory = [
       { title: "Desarrollo de variaciones del patrón base", duration: "14:50" },
       { title: "Toque libre vs compasado al servicio del cante", duration: "12:15" }
     ],
-    available: true
+    available: false
   },
 
   {
@@ -103,7 +103,7 @@ const inventory = [
       { title: "Montaje paso a paso de tu primera falseta por Bulería", duration: "18:30" },
       { title: "Cierres por Bulerías y cómo rematar con el cantaor", duration: "10:20" }
     ],
-    available: true
+    available: false
   },
 
   {
@@ -123,7 +123,7 @@ const inventory = [
       { title: "Introducción a los Fandangos: Rueda de acordes 3/4", duration: "08:45" },
       { title: "Introducción a las Bulerías: El ciclo de Jerez", duration: "12:40" }
     ],
-    available: true
+    available: false
   },
 
   {
@@ -143,7 +143,7 @@ const inventory = [
       { title: "Técnica de rasgueo limpio: Tres y cuatro dedos", duration: "12:10" },
       { title: "Picado básico: Velocidad progresiva con metrónomo", duration: "13:50" }
     ],
-    available: true
+    available: false
   },
 
   {
@@ -163,7 +163,7 @@ const inventory = [
       { title: "Transiciones entre acordes sin pausa: Entrenamiento", duration: "14:05" },
       { title: "Cejillas completas: Técnica y construcción gradual", duration: "15:10" }
     ],
-    available: true
+    available: false
   },
 
   {
@@ -183,7 +183,7 @@ const inventory = [
       { title: "Estudio combinado: Picado + cambios de posición", duration: "14:30" },
       { title: "Rutina diaria de 20 minutos para consolidar técnica", duration: "11:45" }
     ],
-    available: true
+    available: false
   },
 
   {
@@ -203,7 +203,7 @@ const inventory = [
       { title: "La cadencia como motor de la tensión dramática", duration: "14:35" },
       { title: "Aplicación práctica sobre Soleá, Seguiriya y Bulerías", duration: "16:00" }
     ],
-    available: true
+    available: false
   },
 
   {
@@ -223,7 +223,7 @@ const inventory = [
       { title: "Compás de Soleá, Bulería y Tangos con metrónomo", duration: "15:20" },
       { title: "Ejercicio de escucha activa y respuesta al cantaor", duration: "12:40" }
     ],
-    available: true
+    available: false
   },
 
   {
@@ -243,7 +243,7 @@ const inventory = [
       { title: "Compás y Palmas: Construye tu reloj interno", duration: "11:15" },
       { title: "Sesión práctica integrada: Juntando todos los elementos", duration: "20:00" }
     ],
-    available: true
+    available: false
   },
 
 
