@@ -209,8 +209,8 @@ const inventory = [
   {
     id: "10",
     type: "individual",
-    title: "Compás y Palmas: El Pulso Flamenco",
-    price: "29,99 €",
+    title: "Todos los Rasgueos que necesitas",
+    price: "39,99 €",
     level: "Payo",
     levelSlug: "payo",
     category: "Curso Especializado • Nivel 1",
