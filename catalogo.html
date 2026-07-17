@@ -620,7 +620,9 @@
             mDesc.innerText = course.desc;
             mPrice.innerText = course.price;
             checkoutBtn.innerText = course.type === 'bundle' ? 'Adquirir Pack' : 'Desbloquear Curso';
-            checkoutBtn.onclick = () => alert(`¡Pasarela de pago iniciada para: ${course.title}!`);
+            checkoutBtn.onclick = () => {
+                window.location.href = `checkout.html?id=${course.id}`;
+            };
 
             // Assign matching cover styling to the modal
             mHero.className = "modal-hero";
@@ -634,9 +636,16 @@
 
             // Dynamic Bundle Logic
             if (course.type === 'individual') {
-                activeBundleId = course.bundleId;
-                document.getElementById('upsell-text').innerHTML = `Este curso está incluido en <strong>${course.bundleName}</strong> por solo <strong>${course.bundlePrice}</strong>. ¡Consigue acceso de por vida a todos los módulos de este nivel y ahorra!`;
-                upsell.style.display = 'flex';
+                const bundleId = course.bundleId || course.bundledIn;
+                const bundleItem = inventory.find(item => item.id === bundleId);
+                if (bundleItem) {
+                    activeBundleId = bundleId;
+                    document.getElementById('upsell-text').innerHTML = `Este curso está incluido en <strong>${bundleItem.title}</strong> por solo <strong>${bundleItem.price}</strong>. ¡Consigue acceso de por vida a todos los módulos de este nivel y ahorra!`;
+                    upsell.style.display = 'flex';
+                } else {
+                    activeBundleId = null;
+                    upsell.style.display = 'none';
+                }
             } else {
                 upsell.style.display = 'none';
                 activeBundleId = null;
@@ -661,13 +670,15 @@
         // Auto-redirect user inside popup directly to the upsell bundle
         function openBundleFromUpsell() {
             if (activeBundleId) {
-                overlay.classList.remove('active');
-                setTimeout(() => {
-                    const targetCard = document.querySelector(`[data-id="${activeBundleId}"]`);
-                    if (targetCard) {
+                const targetCard = document.querySelector(`[data-id="${activeBundleId}"]`);
+                if (targetCard) {
+                    overlay.classList.remove('active');
+                    setTimeout(() => {
                         targetCard.click();
-                    }
-                }, 300);
+                    }, 300);
+                } else {
+                    window.location.href = `checkout.html?id=${activeBundleId}`;
+                }
             }
         }
 
