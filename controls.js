@@ -4,7 +4,7 @@
  */
 
 class ControlsUI {
-    constructor(containerSelector = 'header, nav, .nav-bar') {
+    constructor(containerSelector = 'nav.nav-bar') {
         this.containerSelector = containerSelector;
         this.init();
     }
@@ -30,16 +30,14 @@ class ControlsUI {
             return;
         }
 
+        // Check if controls already exist
+        if (container.querySelector('.controls-container')) {
+            return;
+        }
+
         // Create controls wrapper
         const controlsWrapper = document.createElement('div');
         controlsWrapper.className = 'controls-container';
-        controlsWrapper.style.cssText = `
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-left: auto;
-        `;
 
         // Theme control group
         const themeGroup = this.createThemeControl();
@@ -49,15 +47,8 @@ class ControlsUI {
         const langGroup = this.createLanguageControl();
         controlsWrapper.appendChild(langGroup);
 
-        // Add to container - try to add after nav-links if it exists
-        const navLinks = container.querySelector('.nav-links');
-        if (navLinks && navLinks.parentElement === container) {
-            // Insert after nav-links
-            navLinks.parentElement.insertBefore(controlsWrapper, navLinks.nextSibling);
-        } else {
-            // Otherwise append to container
-            container.appendChild(controlsWrapper);
-        }
+        // Add to container
+        container.appendChild(controlsWrapper);
     }
 
     /**
@@ -66,7 +57,6 @@ class ControlsUI {
     createThemeControl() {
         const group = document.createElement('div');
         group.className = 'control-group';
-        group.style.cssText = 'display: flex; gap: 0.5rem; align-items: center;';
 
         const label = document.createElement('span');
         label.className = 'control-label';
@@ -84,24 +74,11 @@ class ControlsUI {
             button.setAttribute('data-i18n', `theme.${theme}`);
             button.title = `Switch to ${theme} mode`;
             button.textContent = window.I18n ? window.I18n.t(`theme.${theme}`) : theme;
-            button.style.cssText = `
-                background: transparent;
-                border: 1px solid rgba(211, 107, 64, 0.15);
-                color: inherit;
-                padding: 0.4rem 0.8rem;
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 0.85rem;
-                transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-                font-weight: 500;
-            `;
 
             // Set active state
             const currentPreference = window.ThemeManager.getPreference();
             if (currentPreference === theme) {
                 button.classList.add('active');
-                button.style.backgroundColor = 'var(--terra-cotta)';
-                button.style.color = 'var(--white)';
             }
 
             button.addEventListener('click', () => {
@@ -122,7 +99,6 @@ class ControlsUI {
     createLanguageControl() {
         const group = document.createElement('div');
         group.className = 'control-group';
-        group.style.cssText = 'display: flex; gap: 0.5rem; align-items: center;';
 
         const label = document.createElement('span');
         label.className = 'control-label';
@@ -139,24 +115,11 @@ class ControlsUI {
             button.setAttribute('data-lang', lang);
             button.setAttribute('data-i18n', `lang.${lang}`);
             button.textContent = window.I18n ? window.I18n.t(`lang.${lang}`) : lang;
-            button.style.cssText = `
-                background: transparent;
-                border: 1px solid rgba(211, 107, 64, 0.15);
-                color: inherit;
-                padding: 0.4rem 0.8rem;
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 0.85rem;
-                transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-                font-weight: 500;
-            `;
 
             // Set active state
             const currentLang = window.I18n.getCurrentLanguage();
             if (currentLang === lang) {
                 button.classList.add('active');
-                button.style.backgroundColor = 'var(--terra-cotta)';
-                button.style.color = 'var(--white)';
             }
 
             button.addEventListener('click', () => {
@@ -180,13 +143,6 @@ class ControlsUI {
             document.querySelectorAll('.theme-switch-button').forEach(btn => {
                 const isActive = btn.getAttribute('data-theme') === e.detail.preference;
                 btn.classList.toggle('active', isActive);
-                if (isActive) {
-                    btn.style.backgroundColor = 'var(--terra-cotta)';
-                    btn.style.color = 'var(--white)';
-                } else {
-                    btn.style.backgroundColor = 'transparent';
-                    btn.style.color = 'var(--charcoal)';
-                }
             });
         });
 
@@ -195,13 +151,6 @@ class ControlsUI {
             document.querySelectorAll('.lang-switch-button').forEach(btn => {
                 const isActive = btn.getAttribute('data-lang') === e.detail.language;
                 btn.classList.toggle('active', isActive);
-                if (isActive) {
-                    btn.style.backgroundColor = 'var(--terra-cotta)';
-                    btn.style.color = 'var(--white)';
-                } else {
-                    btn.style.backgroundColor = 'transparent';
-                    btn.style.color = 'var(--charcoal)';
-                }
             });
         });
     }
