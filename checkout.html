@@ -431,15 +431,20 @@
             }
         }
     </style>
+    <!-- Theme and Localization -->
+    <link rel="stylesheet" href="./theme.css">
+    <script src="./theme-manager.js"></script>
+    <script src="./i18n-manager.js"></script>
+    <script src="./controls.js"></script>
 </head>
 <body>
 
     <nav class="nav-bar">
-        <a href="index.html" class="nav-logo">Javier Arcos</a>
+        <a href="index.html" class="nav-logo" data-i18n="logo">Javier Arcos</a>
         <div class="nav-links">
-            <a href="index.html">Inicio</a>
-            <a href="catalogo.html">Catálogo</a>
-            <a href="contacto.html">Contacto</a>
+            <a href="index.html" data-i18n="nav.home">Inicio</a>
+            <a href="catalogo.html" data-i18n="nav.catalog">Catálogo</a>
+            <a href="contacto.html" data-i18n="nav.contact">Contacto</a>
         </div>
     </nav>
 
@@ -543,17 +548,21 @@
 
             let upsellHtml = '';
             if (currentItem.type === 'individual') {
-                upsellHtml = `
-                    <div class="summary-upsell">
-                        <div class="summary-upsell-header">
-                            <span>💡</span> OFERTA DE UPGRADE
+                const bundleId = currentItem.bundleId || currentItem.bundledIn;
+                const bundleItem = inventory.find(item => item.id === bundleId);
+                if (bundleItem) {
+                    upsellHtml = `
+                        <div class="summary-upsell">
+                            <div class="summary-upsell-header">
+                                <span>💡</span> OFERTA DE UPGRADE
+                            </div>
+                            <div class="summary-upsell-text">
+                                Ahorra más del 30% comprando el pack completo <strong>${bundleItem.title}</strong> por solo <strong>${bundleItem.price}</strong>.
+                            </div>
+                            <button class="summary-upsell-btn" onclick="upgradeToBundle('${bundleItem.id}')">Actualizar Pedido</button>
                         </div>
-                        <div class="summary-upsell-text">
-                            Ahorra más del 30% comprando el pack completo <strong>${currentItem.bundleName}</strong> por solo <strong>${currentItem.bundlePrice}</strong>.
-                        </div>
-                        <button class="summary-upsell-btn" onclick="upgradeToBundle('${currentItem.bundleId}')">Actualizar Pedido</button>
-                    </div>
-                `;
+                    `;
+                }
             }
 
             summaryDiv.innerHTML = `
@@ -585,11 +594,11 @@
 
         // Single-click upgrade to bundle
         function upgradeToBundle(bundleId) {
-            const bundleItem = inventory.find(c => c.id === bundleId);
+            const bundleItem = inventory.find(c => c.id === bundleId || c.id === currentItem.bundledIn);
             if (bundleItem) {
                 currentItem = bundleItem;
                 // Update active query param in URL without reloading
-                const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?id=${bundleId}`;
+                const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?id=${bundleItem.id}`;
                 window.history.pushState({path:newurl},'',newurl);
                 renderSummary();
             }

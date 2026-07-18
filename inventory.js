@@ -243,7 +243,7 @@ const inventory = [
       { title: "Compás y Palmas: Construye tu reloj interno", duration: "11:15" },
       { title: "Sesión práctica integrada: Juntando todos los elementos", duration: "20:00" }
     ],
-    available: false
+    available: true
   },
 
 
