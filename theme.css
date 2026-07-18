@@ -1,0 +1,241 @@
+/**
+ * Theme Stylesheet
+ * Provides dark and light mode color schemes
+ */
+
+:root {
+  /* Light mode colors */
+  --bg-clay: #F9F6F0;
+  --bg-clay-dark: #F4EFE6;
+  --terra-cotta: #D36B40;
+  --pastel-orange: #F4A261;
+  --charcoal: #1A1A1A;
+  --charcoal-light: #2A2A2A;
+  --white: #FFFFFF;
+  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Additional light mode colors */
+  --border-color: rgba(211, 107, 64, 0.15);
+  --text-secondary: rgba(26, 26, 26, 0.7);
+  --shadow-light: rgba(26, 26, 26, 0.04);
+  --shadow-medium: rgba(213, 107, 64, 0.3);
+}
+
+/* Dark mode theme */
+[data-theme="dark"] {
+  --bg-clay: #0F0F0F;
+  --bg-clay-dark: #1A1A1A;
+  --terra-cotta: #FF8C5A;
+  --pastel-orange: #FFB380;
+  --charcoal: #E8E8E8;
+  --charcoal-light: #D0D0D0;
+  --white: #1A1A1A;
+  --border-color: rgba(255, 140, 90, 0.2);
+  --text-secondary: rgba(232, 232, 232, 0.7);
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-medium: rgba(255, 140, 90, 0.2);
+}
+
+/* Smooth theme transitions */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *:before,
+html.theme-transition *:after {
+  transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Apply color variables to existing elements */
+body {
+  background-color: var(--bg-clay);
+  color: var(--charcoal);
+}
+
+/* Navigation */
+.nav-bar {
+  border-bottom-color: var(--border-color);
+}
+
+.nav-logo {
+  color: var(--charcoal);
+}
+
+.nav-links a {
+  color: var(--charcoal-light);
+}
+
+.nav-links a:hover {
+  color: var(--terra-cotta);
+}
+
+.nav-links a.active {
+  color: var(--terra-cotta);
+}
+
+.nav-links a.active::after {
+  background-color: var(--terra-cotta);
+}
+
+/* Hero section */
+.hero h1 {
+  color: var(--charcoal);
+}
+
+.hero p {
+  color: var(--charcoal-light);
+}
+
+.hero-btn {
+  background-color: var(--charcoal);
+  color: var(--white) !important;
+}
+
+[data-theme="dark"] .hero-btn {
+  background-color: var(--terra-cotta);
+  color: var(--charcoal) !important;
+}
+
+.hero-btn:hover {
+  background-color: var(--terra-cotta);
+  box-shadow: 0 10px 30px var(--shadow-medium);
+}
+
+/* Cards and containers */
+.teacher-spotlight {
+  background-color: var(--white);
+  border-color: var(--border-color);
+  box-shadow: 0 20px 50px var(--shadow-light);
+}
+
+[data-theme="dark"] .teacher-spotlight {
+  background-color: var(--bg-clay-dark);
+}
+
+/* Form elements */
+input, textarea, select {
+  background-color: var(--white);
+  color: var(--charcoal);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: var(--bg-clay-dark);
+  color: var(--charcoal-light);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Buttons */
+button {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Links */
+a {
+  color: var(--terra-cotta);
+}
+
+a:hover {
+  color: var(--pastel-orange);
+}
+
+/* Code blocks if present */
+code, pre {
+  background-color: var(--white);
+  color: var(--charcoal);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] code,
+[data-theme="dark"] pre {
+  background-color: var(--bg-clay-dark);
+  color: var(--charcoal-light);
+}
+
+/* Borders and dividers */
+hr, .divider {
+  border-color: var(--border-color);
+}
+
+/* Theme switcher button styling */
+.theme-switch-button {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--charcoal);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  font-weight: 500;
+}
+
+.theme-switch-button:hover {
+  border-color: var(--terra-cotta);
+  color: var(--terra-cotta);
+}
+
+.theme-switch-button.active {
+  background-color: var(--terra-cotta);
+  color: var(--white);
+  border-color: var(--terra-cotta);
+}
+
+[data-theme="dark"] .theme-switch-button.active {
+  color: var(--charcoal);
+}
+
+/* Language switcher styling */
+.lang-switch-button {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--charcoal);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  font-weight: 500;
+}
+
+.lang-switch-button:hover {
+  border-color: var(--terra-cotta);
+  color: var(--terra-cotta);
+}
+
+.lang-switch-button.active {
+  background-color: var(--terra-cotta);
+  color: var(--white);
+  border-color: var(--terra-cotta);
+}
+
+[data-theme="dark"] .lang-switch-button.active {
+  color: var(--charcoal);
+}
+
+/* Controls container */
+.controls-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.control-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  white-space: nowrap;
+}
